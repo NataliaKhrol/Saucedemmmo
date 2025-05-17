@@ -58,14 +58,21 @@ public class BaseTest {
         //  driver.quit();
     }
 }
-      /*  // как вариант пробую отключить автоматическое заполнение формы
-        options.setExperimentalOption("excludeSwitches", List.of("enable-automation"));
-        options.setExperimentalOption("useAutomationExtension", false);
-        //Иногда помогает отключить флаг автоматизации:
-        options.setExperimentalOption("excludeSwitches", Arrays.asList("enable-automation"));*/
-   /*     //Но эти опции перестали полностью работать в новых версиях ChromeDriver/Chrome.
-        options.addArguments("--disable-save-password-bubble");
-        options.setExperimentalOption("prefs", Map.of(
-                "credentials_enable_service", false,
-                "profile.password_manager_enabled", false
-        ));*/
+/** Варианты отключения Alert от Google Chrome
+ * // как вариант пробую отключить автоматическое заполнение формы
+ * options.setExperimentalOption("excludeSwitches", List.of("enable-automation"));
+ * options.setExperimentalOption("useAutomationExtension", false);
+ * //Иногда помогает отключить флаг автоматизации:
+ * options.setExperimentalOption("excludeSwitches", Arrays.asList("enable-automation"));     //Но эти опции перестали полностью работать в новых версиях ChromeDriver/Chrome.
+ * options.addArguments("--disable-save-password-bubble");
+ * options.setExperimentalOption("prefs", Map.of(
+ * "credentials_enable_service", false,
+ * "profile.password_manager_enabled", false
+ * ));
+ */
+/**     //Но эти опции перестали полностью работать в новых версиях ChromeDriver/Chrome.
+ options.addArguments("--disable-save-password-bubble");
+ options.setExperimentalOption("prefs", Map.of(
+ "credentials_enable_service", false,
+ "profile.password_manager_enabled", false
+ ));*/
