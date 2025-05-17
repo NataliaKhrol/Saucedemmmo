@@ -2,13 +2,10 @@ package tests;
 
 import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import user.UserFactory;
-import utils.AllureUtils;
 
 import static org.testng.Assert.*;
-import static utils.AllureUtils.takeScreenshot;
 
 public class LoginTest extends BaseTest {
     @Epic("Модуль логина интернет-магазина")
@@ -17,19 +14,15 @@ public class LoginTest extends BaseTest {
     @Severity(SeverityLevel.BLOCKER)
     @Owner("Khrol Nat Ser bla@gmail.com")
     @TmsLink("UrnSu")
-    @Issue("2")
+    @Issue("1")
     @Flaky
     @Test(description = "Проверка авторизации")
-    //   @Test()
     public void correctLogin() {
         loginPage.open();
         loginPage.login(UserFactory.withAdminPermission());
-
         assertTrue(productsPage.titleIsDisplayed());
-        //takeScreenshot(driver);
         assertEquals(productsPage.getTitle(), "Product");
-        // productsPage.addToCart("Sauce Labs Backpack");
-
+        productsPage.addToCart("Sauce Labs Backpack");
         productsPage.isOpen();
         productsPage.addToCart(0);
         productsPage.addToCart(2);
@@ -48,7 +41,6 @@ public class LoginTest extends BaseTest {
                 {"standard_user", "", "Epic sadface: Password is required"}
         };
     }
-
 
     @Test(dataProvider = "incorrectLoginDate")
     public void incorrectLogin(String user, String pass, String errorMsg) {

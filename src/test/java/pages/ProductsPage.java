@@ -43,6 +43,5 @@ public class ProductsPage extends BasePage {
     @Step("Открытие корзины")
     public void openCart() {
         driver.findElement(By.xpath("//*[@data-test='shopping-cart-link']")).click();
-
     }
 }
