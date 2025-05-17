@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import user.User;
 
+
 public class LoginPage extends BasePage {
     private static final By USERNAME_INPUT = By.id("user-name");
     private static final By PASSWORD_INPUT = By.id("password");
@@ -15,19 +16,18 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    @Step("Открываем браузер")
+    @Step("Открытие браузера")
     public void open() {
         driver.get(BASE_URL + "cart.html");
     }
 
-    @Step("Авторизовываемся под соответствующими кредами")
+    @Step("Вводим данные пользователя")
     public void login(User user) {
         fillLoginInput(user.getEmail());
         fillPasswordInput(user.getPassword());
         clickSubmitBtn();
     }
 
-    @Step("Вводим имя пользователя")
     public void fillLoginInput(String user) {
         driver.findElement(USERNAME_INPUT).sendKeys(user);
     }

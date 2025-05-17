@@ -1,20 +1,32 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import user.UserFactory;
+import utils.AllureUtils;
 
 import static org.testng.Assert.*;
+import static utils.AllureUtils.takeScreenshot;
 
 public class LoginTest extends BaseTest {
-
-    @Test(enabled = true)
+    @Epic("Модуль логина интернет-магазина")
+    @Feature("Юридические лица")
+    @Story("STG")
+    @Severity(SeverityLevel.BLOCKER)
+    @Owner("Khrol Nat Ser bla@gmail.com")
+    @TmsLink("UrnSu")
+    @Issue("2")
+    @Flaky
+    @Test(description = "Проверка авторизации")
     //   @Test()
     public void correctLogin() {
         loginPage.open();
         loginPage.login(UserFactory.withAdminPermission());
 
         assertTrue(productsPage.titleIsDisplayed());
+        //takeScreenshot(driver);
         assertEquals(productsPage.getTitle(), "Product");
         // productsPage.addToCart("Sauce Labs Backpack");
 
@@ -37,10 +49,13 @@ public class LoginTest extends BaseTest {
         };
     }
 
+
     @Test(dataProvider = "incorrectLoginDate")
     public void incorrectLogin(String user, String pass, String errorMsg) {
         loginPage.open();
-     //   loginPage.login(user, pass);
+        loginPage.fillLoginInput(user);
+        loginPage.fillPasswordInput(pass);
+        loginPage.clickSubmitBtn();
         assertEquals(loginPage.getErrorMsg(), errorMsg);
     }
 }
