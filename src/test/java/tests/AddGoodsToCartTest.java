@@ -1,14 +1,24 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
+import static user.UserFactory.withAdminPermission;
 
 public class AddGoodsToCartTest extends BaseTest {
-    @Test()
+    @Epic("Модуль логина интернет-магазина")
+    @Feature("Юридические лица")
+    @Story("STG")
+    @Severity(SeverityLevel.BLOCKER)
+    @Owner("Khrol Nat Ser bla@gmail.com")
+    @TmsLink("UrnSu")
+    @Issue("2")
+    @Test(description="проверяем, что товары добавлены в корзину")
+    @Flaky
     public void checkGoodsInCart() {
         loginPage.open();
-        loginPage.login(user, password);
+        loginPage.login(withAdminPermission());
         productsPage.isOpen();
         productsPage.addToCart(0);
         productsPage.addToCart(2);

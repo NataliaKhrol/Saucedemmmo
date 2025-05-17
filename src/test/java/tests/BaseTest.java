@@ -1,12 +1,12 @@
 package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.ITestContext;
-import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.CartPage;
 import pages.LoginPage;
@@ -27,6 +27,7 @@ public class BaseTest {
 
     @Parameters({"browser"})
     @BeforeMethod
+    @Step()
     public void setup(@Optional("chrome") String browser, ITestContext context) {
         if (browser.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();
@@ -51,7 +52,7 @@ public class BaseTest {
         password = PropertyReader.getProperty("saucedemmmo.password");
     }
 
-
+    @Step("Закрытие")
     @AfterMethod()
     public void close() {
         //  driver.quit();
