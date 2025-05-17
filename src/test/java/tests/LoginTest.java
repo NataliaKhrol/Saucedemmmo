@@ -2,7 +2,6 @@ package tests;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import user.UserFactory;
 
 import static org.testng.Assert.*;
 
@@ -12,7 +11,7 @@ public class LoginTest extends BaseTest {
     //   @Test()
     public void correctLogin() {
         loginPage.open();
-        loginPage.login(UserFactory.withAdminPermission());
+        loginPage.login(user, password);
 
         assertTrue(productsPage.titleIsDisplayed());
         assertEquals(productsPage.getTitle(), "Product");
