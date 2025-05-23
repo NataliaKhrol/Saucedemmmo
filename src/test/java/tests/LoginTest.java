@@ -1,10 +1,12 @@
 package tests;
 
+import enums.DepartmentNaming;
 import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import user.UserFactory;
 
+import static enums.DepartmentNaming.PRODUCTS;
 import static org.testng.Assert.*;
 
 public class LoginTest extends BaseTest {
@@ -15,18 +17,19 @@ public class LoginTest extends BaseTest {
     @Owner("Khrol Nat Ser bla@gmail.com")
     @TmsLink("UrnSu")
     @Issue("1")
-    @Flaky
     @Test(description = "Проверка авторизации")
+    @Flaky
     public void correctLogin() {
         loginPage.open();
         loginPage.login(UserFactory.withAdminPermission());
         assertTrue(productsPage.titleIsDisplayed());
-        assertEquals(productsPage.getTitle(), "Product");
+        assertEquals(productsPage.getTitle(), PRODUCTS.getDisplayName());
+
         productsPage.addToCart("Sauce Labs Backpack");
         productsPage.isOpen();
         productsPage.addToCart(0);
+        productsPage.addToCart(1);
         productsPage.addToCart(2);
-        productsPage.addToCart(3);
         productsPage.openCart();
         assertTrue(cartPage.getProductsNames().contains("Sauce Labs Backpack"));
         assertEquals(cartPage.getProductsNames().size(), 3);
